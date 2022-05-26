@@ -1,0 +1,7 @@
+.header__title {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.2;
+  display: inline-block;
+  margin: 0 10px 14px 0;
+}
