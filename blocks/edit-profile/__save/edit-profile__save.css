@@ -1,0 +1,11 @@
+.edit-profile__save {
+  border: none;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.21;
+  width: 100%;
+  padding: 14px;
+  margin-top: 16px;
+}

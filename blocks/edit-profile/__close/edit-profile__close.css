@@ -1,0 +1,17 @@
+.edit-profile__close {
+  background-image: url(../../../images/close_icon.png);
+  background-size: contain;
+  border: none;
+  background-color: #000000;
+  width: 26px;
+  height: 26px;
+  position: relative;
+  left: 88%;
+  top: -15px;
+}
+
+.edit-profile__close:hover,
+.edit-profile__close:focus {
+  background-image: url(../../../images/close_icon_hover.png);
+  cursor: pointer;
+}
