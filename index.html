@@ -20,11 +20,11 @@
             class="header__avatar"
             alt="Foto do perfil"
           />
-          <div>
+          <div class="header__title-container">
             <h1 class="header__title">Jacques Cousteau</h1>
             <button class="edit-button" type="button"></button>
-            <div id="edit-profile" class="edit-profile">
-              <div class="edit-profile__form">
+            <div id="edit-profile" class="edit-profile edit-profile_hidden">
+              <div class="edit-profile__container">
                 <h2 class="edit-profile__title">Edit profile</h2>
                 <input
                   type="text"
@@ -40,8 +40,9 @@
                 <button class="edit-profile__close" type="button"></button>
               </div>
             </div>
+            <p class="header__subtitle">Explorer</p>
           </div>
-          <p class="header__subtitle">Explorer</p>
+
           <button class="add-button" type="button">&plus;</button>
         </div>
       </header>

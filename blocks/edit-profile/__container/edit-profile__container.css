@@ -1,4 +1,4 @@
-.edit-profile__form {
+.edit-profile__container {
   background-color: #ffffff;
   margin: auto;
   padding: 25px 22px;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (min-width: 600px) {
-  .edit-profile__form {
+  .edit-profile__container {
     padding: 36px;
   }
 }
