@@ -1,3 +1,5 @@
-.header__title-container {
-  flex-basis: 66%;
+@media screen and (min-width: 600px) {
+  .header__title-container {
+    flex-basis: 580px;
+  }
 }
