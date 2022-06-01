@@ -14,8 +14,6 @@ function saveEditProfile() {
   let aboutMe = document.querySelector(".header__subtitle");
   profileName.textContent = inputName.value;
   aboutMe.textContent = inputAboutMe.value;
-  profileName.value = "";
-  aboutMe.value = "";
   openEditProfile();
 }
 

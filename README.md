@@ -13,7 +13,7 @@ Este projeto mostra cards de locais pelos Estados Unidos visitados pelo Explorad
 
 **Tecnologias utilizadas**
 
-Para construção deste projeto foram usados HTML, CSS e Javascript.
+Para construção deste projeto foram usados HTML, CSS semântico, metodologia BEM para nomenclatura e estrutura de arquivos e Javascript.
 
 **Figma**
 
