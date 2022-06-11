@@ -24,29 +24,64 @@
             <h1 class="header__title">Jacques Cousteau</h1>
             <button class="edit-button" type="button"></button>
             <p class="header__subtitle">Explorer</p>
-            <div id="edit-profile" class="edit-profile">
-              <div class="edit-profile__container">
-                <p class="edit-profile__title">Edit profile</p>
+            <div id="edit-profile_popup" class="popup">
+              <div class="popup__container">
+                <p class="popup__title">Edit profile</p>
                 <input
                   type="text"
                   placeholder="Name"
-                  class="edit-profile__input"
+                  class="popup__input"
                   id="input-name"
                   value="Jacques Cousteau"
                 />
                 <input
                   type="text"
                   placeholder="About me"
-                  class="edit-profile__input"
+                  class="popup__input"
                   id="input-aboutme"
                   value="Explorer"
                 />
-                <button class="edit-profile__save" type="submit">Save</button>
-                <button class="edit-profile__close" type="button"></button>
+                <button
+                  id="edit-profile_save"
+                  class="popup__save"
+                  type="submit"
+                >
+                  Save
+                </button>
+                <button
+                  id="edit-profile_close"
+                  class="popup__close"
+                  type="button"
+                ></button>
               </div>
             </div>
           </div>
           <button class="add-button" type="button">&plus;</button>
+          <div id="add-card_popup" class="popup">
+            <div class="popup__container">
+              <p class="popup__title">New place</p>
+              <input
+                type="text"
+                placeholder="Title"
+                class="popup__input"
+                id="card-title"
+              />
+              <input
+                type="url"
+                placeholder="Image link"
+                class="popup__input"
+                id="card-image"
+              />
+              <button id="create-card" class="popup__save" type="submit">
+                Create
+              </button>
+              <button
+                id="add-card_close"
+                class="popup__close"
+                type="button"
+              ></button>
+            </div>
+          </div>
         </div>
       </header>
       <main class="content"></main>
@@ -56,6 +91,7 @@
     </div>
     <template id="cards__template">
       <div class="card">
+        <button class="card__delete-icon" type="submit"></button>
         <img src="" class="card__image" alt="" />
         <div class="card__title-container">
           <h2 class="card__title"></h2>

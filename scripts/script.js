@@ -1,10 +1,14 @@
 let openButton = document.querySelector(".edit-button");
-let editProfile = document.querySelector(".edit-profile");
-let saveButton = document.querySelector(".edit-profile__save");
-let closeButton = document.querySelector(".edit-profile__close");
+let editProfilePopup = document.querySelector("#edit-profile_popup");
+let saveButton = document.querySelector("#edit-profile_save");
+let closeEditProfileButton = document.querySelector("#edit-profile_close");
+let addButton = document.querySelector(".add-button");
+let addCardPopup = document.querySelector("#add-card_popup");
+let closeAddCardButton = document.querySelector("#add-card_close");
+let createCardButton = document.querySelector("#create-card");
 
-function openEditProfile() {
-  editProfile.classList.toggle("edit-profile_opened");
+function openEditProfilePopup() {
+  editProfilePopup.classList.toggle("popup_opened");
 }
 
 function saveEditProfile() {
@@ -14,12 +18,35 @@ function saveEditProfile() {
   let aboutMe = document.querySelector(".header__subtitle");
   profileName.textContent = inputName.value;
   aboutMe.textContent = inputAboutMe.value;
-  openEditProfile();
+  openPopup();
 }
 
-openButton.addEventListener("click", openEditProfile);
-closeButton.addEventListener("click", openEditProfile);
+openButton.addEventListener("click", openEditProfilePopup);
+closeEditProfileButton.addEventListener("click", openEditProfilePopup);
 saveButton.addEventListener("click", saveEditProfile);
+
+function openAddCardPopup() {
+  addCardPopup.classList.toggle("popup_opened");
+}
+
+function addCard() {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  cardElement.querySelector(".card__image").src =
+    document.querySelector("#card-image").value;
+  cardElement.querySelector(".card__image").alt =
+    document.querySelector("#card-title").value;
+  cardElement.querySelector(".card__title").textContent =
+    document.querySelector("#card-title").value;
+  cardsContainer.prepend(cardElement);
+
+  openAddCardPopup();
+  like();
+  deleteCard();
+}
+
+addButton.addEventListener("click", openAddCardPopup);
+closeAddCardButton.addEventListener("click", openAddCardPopup);
+createCardButton.addEventListener("click", addCard);
 
 const initialCards = [
   {
@@ -74,3 +101,15 @@ function like() {
 }
 
 like();
+
+function deleteCard() {
+  const deleteButton = document.querySelectorAll(".card__delete-icon");
+  deleteButton.forEach((item) => {
+    item.addEventListener("click", function () {
+      const cardElement = item.closest(".card");
+      cardElement.remove();
+    });
+  });
+}
+
+deleteCard();
