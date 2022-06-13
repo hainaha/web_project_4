@@ -12,3 +12,8 @@
   float: right;
   margin-right: 15px;
 }
+
+.card__delete-icon:hover,
+.card__delete-icon:focus {
+  background-image: url(../../../images/trash_hover.svg);
+}

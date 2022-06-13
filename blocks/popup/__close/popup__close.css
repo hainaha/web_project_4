@@ -2,7 +2,7 @@
   background-image: url(../../../images/close_icon.png);
   background-size: contain;
   border: none;
-  background-color: #000000;
+  background-color: transparent;
   width: 26px;
   height: 26px;
   position: absolute;
