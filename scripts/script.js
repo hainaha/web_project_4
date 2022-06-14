@@ -1,31 +1,31 @@
-let openButton = document.querySelector(".edit-button");
-let editProfilePopup = document.querySelector("#edit-profile_popup");
-let saveButton = document.querySelector("#edit-profile_save");
-let closeEditProfileButton = document.querySelector("#edit-profile_close");
-let addButton = document.querySelector(".add-button");
-let addCardPopup = document.querySelector("#add-card_popup");
-let closeAddCardButton = document.querySelector("#add-card_close");
-let createCardButton = document.querySelector("#create-card");
+const openEditProfileButton = document.querySelector(".edit-button");
+const editProfilePopup = document.querySelector("#edit-profile_popup");
+const saveEditProfileButton = document.querySelector("#edit-profile_save");
+const closeEditProfileButton = document.querySelector("#edit-profile_close");
+const addCardButton = document.querySelector(".add-button");
+const addCardPopup = document.querySelector("#add-card_popup");
+const closeAddCardButton = document.querySelector("#add-card_close");
+const createCardButton = document.querySelector("#create-card");
 
-function openEditProfilePopup() {
+function handleEditProfilePopup() {
   editProfilePopup.classList.toggle("popup_opened");
 }
 
 function saveEditProfile() {
-  let inputName = document.querySelector("#input-name");
-  let inputAboutMe = document.querySelector("#input-aboutme");
+  const inputName = document.querySelector("#input-name");
+  const inputAboutMe = document.querySelector("#input-aboutme");
   let profileName = document.querySelector(".header__title");
   let aboutMe = document.querySelector(".header__subtitle");
   profileName.textContent = inputName.value;
   aboutMe.textContent = inputAboutMe.value;
-  openPopup();
+  handleEditProfilePopup();
 }
 
-openButton.addEventListener("click", openEditProfilePopup);
-closeEditProfileButton.addEventListener("click", openEditProfilePopup);
-saveButton.addEventListener("click", saveEditProfile);
+openEditProfileButton.addEventListener("click", handleEditProfilePopup);
+closeEditProfileButton.addEventListener("click", handleEditProfilePopup);
+saveEditProfileButton.addEventListener("click", saveEditProfile);
 
-function openAddCardPopup() {
+function handleAddCardPopup() {
   addCardPopup.classList.toggle("popup_opened");
 }
 
@@ -45,7 +45,7 @@ function addCard() {
     });
   cardsContainer.prepend(cardElement);
 
-  openAddCardPopup();
+  handleAddCardPopup();
   deleteCard();
   expandImagePopup();
   closeImagePopup();
@@ -54,8 +54,8 @@ function addCard() {
   document.querySelector("#card-title").value = "";
 }
 
-addButton.addEventListener("click", openAddCardPopup);
-closeAddCardButton.addEventListener("click", openAddCardPopup);
+addCardButton.addEventListener("click", handleAddCardPopup);
+closeAddCardButton.addEventListener("click", handleAddCardPopup);
 createCardButton.addEventListener("click", addCard);
 
 const initialCards = [
@@ -103,7 +103,7 @@ initialCards.forEach((item) => {
   cardsContainer.append(cardElement);
 });
 
-function like() {
+function likeCard() {
   const likeButton = document.querySelectorAll(".like-button");
   likeButton.forEach((item) => {
     item.addEventListener("click", function (evt) {
@@ -112,7 +112,7 @@ function like() {
   });
 }
 
-like();
+likeCard();
 
 function deleteCard() {
   const deleteButton = document.querySelectorAll(".card__delete-icon");
