@@ -38,10 +38,14 @@ function addCard() {
   cardElement.querySelector(".card__title").textContent = card__title;
   cardElement.querySelector(".popup__expanded-image").src = card__image;
   cardElement.querySelector(".popup__place-name").textContent = card__title;
+  cardElement
+    .querySelector(".like-button")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("like-button_active");
+    });
   cardsContainer.prepend(cardElement);
 
   openAddCardPopup();
-  like();
   deleteCard();
   expandImagePopup();
   closeImagePopup();
@@ -128,7 +132,7 @@ function expandImagePopup() {
     item.addEventListener("click", function () {
       const cardElement = item.closest(".card");
       const imagePopup = cardElement.querySelector(".popup_image");
-      imagePopup.classList.toggle("popup_opened");
+      imagePopup.classList.add("popup_opened");
     });
   });
 }
@@ -139,7 +143,7 @@ function closeImagePopup() {
     item.addEventListener("click", function () {
       const cardElement = item.closest(".card");
       const imagePopup = cardElement.querySelector(".popup_image");
-      imagePopup.classList.toggle("popup_opened");
+      imagePopup.classList.remove("popup_opened");
     });
   });
 }
