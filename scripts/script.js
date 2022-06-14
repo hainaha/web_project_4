@@ -31,16 +31,13 @@ function openAddCardPopup() {
 
 function addCard() {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  cardElement.querySelector(".card__image").src =
-    document.querySelector("#card-image").value;
-  cardElement.querySelector(".card__image").alt =
-    document.querySelector("#card-title").value;
-  cardElement.querySelector(".card__title").textContent =
-    document.querySelector("#card-title").value;
-  cardElement.querySelector(".popup__expanded-image").src =
-    document.querySelector("#card-image").value;
-  cardElement.querySelector(".popup__place-name").textContent =
-    document.querySelector("#card-title").value;
+  const card__image = document.querySelector("#card-image").value;
+  const card__title = document.querySelector("#card-title").value;
+  cardElement.querySelector(".card__image").src = card__image;
+  cardElement.querySelector(".card__image").alt = card__title;
+  cardElement.querySelector(".card__title").textContent = card__title;
+  cardElement.querySelector(".popup__expanded-image").src = card__image;
+  cardElement.querySelector(".popup__place-name").textContent = card__title;
   cardsContainer.prepend(cardElement);
 
   openAddCardPopup();
@@ -48,6 +45,9 @@ function addCard() {
   deleteCard();
   expandImagePopup();
   closeImagePopup();
+
+  document.querySelector("#card-image").value = "";
+  document.querySelector("#card-title").value = "";
 }
 
 addButton.addEventListener("click", openAddCardPopup);
