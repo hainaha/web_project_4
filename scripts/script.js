@@ -100,19 +100,13 @@ initialCards.forEach((item) => {
   cardElement.querySelector(".card__title").textContent = item.title;
   cardElement.querySelector(".popup__expanded-image").src = item.src;
   cardElement.querySelector(".popup__place-name").textContent = item.title;
-  cardsContainer.append(cardElement);
-});
-
-function likeCard() {
-  const likeButton = document.querySelectorAll(".like-button");
-  likeButton.forEach((item) => {
-    item.addEventListener("click", function (evt) {
+  cardElement
+    .querySelector(".like-button")
+    .addEventListener("click", function (evt) {
       evt.target.classList.toggle("like-button_active");
     });
-  });
-}
-
-likeCard();
+  cardsContainer.append(cardElement);
+});
 
 function deleteCard() {
   const deleteButton = document.querySelectorAll(".card__delete-icon");
