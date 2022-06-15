@@ -100,12 +100,12 @@ function likeCard(evt) {
 }
 
 function handleExpandImagePopup(evt) {
-  cardElement = evt.target.closest(".card");
-  imagePopup = cardElement.querySelector(".popup_image");
+  const cardElement = evt.target.closest(".card");
+  const imagePopup = cardElement.querySelector(".popup_image");
   imagePopup.classList.toggle("popup_opened");
 }
 
 function deleteCard(evt) {
-  cardElement = evt.target.closest(".card");
+  const cardElement = evt.target.closest(".card");
   cardElement.remove();
 }
