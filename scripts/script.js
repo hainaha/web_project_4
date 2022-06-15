@@ -29,12 +29,19 @@ function handleAddCardPopup() {
   addCardPopup.classList.toggle("popup_opened");
 }
 
-function addCard() {
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+function createNewCard() {
   const card__image = document.querySelector("#card-image").value;
   const card__title = document.querySelector("#card-title").value;
-  cardElement.querySelector(".card__image").src = card__image;
-  cardElement.querySelector(".card__image").alt = card__title;
+  addCard(card__image, card__title);
+}
+
+function addCard(card__image, card__title) {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const imagePopup = cardElement.querySelector(".popup_image");
+  const closeImageButton = cardElement.querySelector(".popup__close_image");
+  cardImage.src = card__image;
+  cardImage.alt = card__title;
   cardElement.querySelector(".card__title").textContent = card__title;
   cardElement.querySelector(".popup__expanded-image").src = card__image;
   cardElement.querySelector(".popup__place-name").textContent = card__title;
@@ -43,12 +50,16 @@ function addCard() {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("like-button_active");
     });
+  cardImage.addEventListener("click", function () {
+    imagePopup.classList.add("popup_opened");
+  });
+  closeImageButton.addEventListener("click", function () {
+    imagePopup.classList.remove("popup_opened");
+  });
   cardsContainer.prepend(cardElement);
 
   handleAddCardPopup();
   deleteCard();
-  expandImagePopup();
-  closeImagePopup();
 
   document.querySelector("#card-image").value = "";
   document.querySelector("#card-title").value = "";
@@ -56,37 +67,31 @@ function addCard() {
 
 addCardButton.addEventListener("click", handleAddCardPopup);
 closeAddCardButton.addEventListener("click", handleAddCardPopup);
-createCardButton.addEventListener("click", addCard);
+createCardButton.addEventListener("click", createNewCard);
 
 const initialCards = [
   {
     src: "./images/yosemite.png",
-    alt: "Foto de Yosemite",
     title: "Yosemite Valley",
   },
   {
     src: "./images/lake_louise.png",
-    alt: "Foto de Lake Louise",
     title: "Lake Louise",
   },
   {
     src: "./images/bald_mountains.png",
-    alt: "Foto de Bald Mountains",
     title: "Bald Mountains",
   },
   {
     src: "./images/latemar.png",
-    alt: "Foto de Latemar",
     title: "Latemar",
   },
   {
     src: "./images/vanoise_national_park.png",
-    alt: "Foto de Vanoise National Park",
     title: "Vanoise National Park",
   },
   {
     src: "./images/lago_di_braies.png",
-    alt: "Foto do Lago di Braies",
     title: "Lago di Braies",
   },
 ];
@@ -94,18 +99,7 @@ const initialCards = [
 const cardTemplate = document.querySelector("#cards__template").content;
 const cardsContainer = document.querySelector(".content");
 initialCards.forEach((item) => {
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  cardElement.querySelector(".card__image").src = item.src;
-  cardElement.querySelector(".card__image").alt = item.alt;
-  cardElement.querySelector(".card__title").textContent = item.title;
-  cardElement.querySelector(".popup__expanded-image").src = item.src;
-  cardElement.querySelector(".popup__place-name").textContent = item.title;
-  cardElement
-    .querySelector(".like-button")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("like-button_active");
-    });
-  cardsContainer.append(cardElement);
+  addCard(item.src, item.title);
 });
 
 function deleteCard() {
@@ -117,30 +111,3 @@ function deleteCard() {
     });
   });
 }
-
-deleteCard();
-
-function expandImagePopup() {
-  const cardImage = document.querySelectorAll(".card__image");
-  cardImage.forEach((item) => {
-    item.addEventListener("click", function () {
-      const cardElement = item.closest(".card");
-      const imagePopup = cardElement.querySelector(".popup_image");
-      imagePopup.classList.add("popup_opened");
-    });
-  });
-}
-
-function closeImagePopup() {
-  const closeImageButton = document.querySelectorAll(".popup__close_image");
-  closeImageButton.forEach((item) => {
-    item.addEventListener("click", function () {
-      const cardElement = item.closest(".card");
-      const imagePopup = cardElement.querySelector(".popup_image");
-      imagePopup.classList.remove("popup_opened");
-    });
-  });
-}
-
-expandImagePopup();
-closeImagePopup();
