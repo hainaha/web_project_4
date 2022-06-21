@@ -10,28 +10,28 @@ const cardTemplate = document.querySelector("#cards__template").content;
 const cardsContainer = document.querySelector(".content");
 const initialCards = [
   {
-    src: "./images/yosemite.png",
-    title: "Yosemite Valley",
+    title: "Vale de Yosemite",
+    src: "https://code.s3.yandex.net/web-code/yosemite.jpg",
   },
   {
-    src: "./images/lake_louise.png",
-    title: "Lake Louise",
+    title: "Lago Louise",
+    src: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
   },
   {
-    src: "./images/bald_mountains.png",
-    title: "Bald Mountains",
+    title: "Montanhas Carecas",
+    src: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
   },
   {
-    src: "./images/latemar.png",
     title: "Latemar",
+    src: "https://code.s3.yandex.net/web-code/latemar.jpg",
   },
   {
-    src: "./images/vanoise_national_park.png",
-    title: "Vanoise National Park",
+    title: "Parque Nacional da Vanoise ",
+    src: "https://code.s3.yandex.net/web-code/vanoise.jpg",
   },
   {
-    src: "./images/lago_di_braies.png",
     title: "Lago di Braies",
+    src: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
 
