@@ -40,6 +40,7 @@ function handleEditProfilePopup() {
 }
 
 function saveEditProfile() {
+  //evt.preventDefault();
   const inputName = document.querySelector("#input-name");
   const inputAboutMe = document.querySelector("#input-aboutme");
   let profileName = document.querySelector(".header__title");
@@ -87,6 +88,7 @@ closeAddCardButton.addEventListener("click", handleAddCardPopup);
 createCardButton.addEventListener("click", createNewCard);
 
 function createNewCard() {
+  //evt.preventDefault();
   const card__image = document.querySelector("#card-image").value;
   const card__title = document.querySelector("#card-title").value;
   cardsContainer.prepend(addCard(card__image, card__title));

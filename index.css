@@ -34,3 +34,27 @@
 @import url("./blocks/like-button/_active/like-button_active.css");
 @import url("./blocks/footer/footer.css");
 @import url("./blocks/footer/__text/footer__text.css");
+
+.form__input-error {
+  display: none;
+  color: red;
+  font-size: 12px;
+}
+
+.form__input-error_active {
+  display: block;
+}
+
+.form__input_type_error {
+  border-bottom-color: red;
+}
+
+.popup__button_disabled {
+  background-color: #ffffff;
+  color: #000000;
+  opacity: 0.2;
+  border: 1px solid #00000033;
+  border-radius: 2px;
+  pointer-events: none;
+  user-select: none;
+}
