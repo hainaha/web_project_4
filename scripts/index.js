@@ -37,6 +37,8 @@ const initialCards = [
 
 function handleEditProfilePopup() {
   editProfilePopup.classList.toggle("popup_opened");
+  handleCloseEscapeListener(editProfilePopup);
+  closePopupOutsideClick(editProfilePopup);
 }
 
 function saveEditProfile() {
@@ -80,18 +82,43 @@ initialCards.forEach((item) => {
 
 function handleAddCardPopup() {
   addCardPopup.classList.toggle("popup_opened");
+  handleCloseEscapeListener(addCardPopup);
+  closePopupOutsideClick(addCardPopup);
 }
 
 addCardButton.addEventListener("click", handleAddCardPopup);
 closeAddCardButton.addEventListener("click", handleAddCardPopup);
 createCardButton.addEventListener("click", createNewCard);
 
+function closePopupOutsideClick(popupElement) {
+  popupElement.addEventListener("click", function (evt) {
+    if (evt.target === this) {
+      popupElement.classList.remove("popup_opened");
+    }
+  });
+}
+
+function handleCloseEscapeListener(popupElement) {
+  if (popupElement.classList.contains("popup_opened")) {
+    document.addEventListener("keydown", closeEscape(popupElement));
+  } else {
+    document.removeEventListener("keydown", closeEscape(popupElement));
+  }
+}
+
+function closeEscape(popupElement) {
+  return function (evt) {
+    if (evt.key === "Escape") {
+      popupElement.classList.remove("popup_opened");
+    }
+  };
+}
+
 function createNewCard() {
   const card__image = document.querySelector("#card-image").value;
   const card__title = document.querySelector("#card-title").value;
   cardsContainer.prepend(addCard(card__image, card__title));
-  document.querySelector("#card-image").value = "";
-  document.querySelector("#card-title").value = "";
+  document.forms.addCardForm.reset();
   handleAddCardPopup();
 }
 
@@ -103,6 +130,8 @@ function handleExpandImagePopup(evt) {
   const cardElement = evt.target.closest(".card");
   const imagePopup = cardElement.querySelector(".popup_image");
   imagePopup.classList.toggle("popup_opened");
+  handleCloseEscapeListener(imagePopup);
+  closePopupOutsideClick(imagePopup);
 }
 
 function deleteCard(evt) {
