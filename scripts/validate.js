@@ -1,15 +1,3 @@
-// Habilitando a validação chamando enableValidation()
-// Valide todas as configurações
-
-// enableValidation({
-//   formSelector: ".popup__form",
-//   inputSelector: ".popup__input",
-//   submitButtonSelector: ".popup__button",
-//   inactiveButtonClass: "popup__button_disabled",
-//   inputErrorClass: "popup__input_type_error",
-//   errorClass: "popup__error_visible",
-// });
-
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
@@ -26,15 +14,15 @@ const toggleButtonState = (inputList, buttonElement) => {
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add("form__input_type_error");
+  inputElement.classList.add("popup__input_type_error");
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__input-error_active");
+  errorElement.classList.add("popup__error_visible");
 };
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove("form__input_type_error");
-  errorElement.classList.remove("form__input-error_active");
+  inputElement.classList.remove("popup__input_type_error");
+  errorElement.classList.remove("popup__error_visible");
   errorElement.textContent = "";
 };
 
@@ -48,7 +36,7 @@ const isValid = (formElement, inputElement) => {
 
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
-  const buttonElement = formElement.querySelector(".popup__save");
+  const buttonElement = formElement.querySelector(".popup__button");
   toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
@@ -59,7 +47,6 @@ const setEventListeners = (formElement) => {
 };
 
 const enableValidation = () => {
-  //  const formList = Array.from(document.forms);
   const formList = Array.from(document.querySelectorAll(".popup__form"));
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
@@ -70,3 +57,18 @@ const enableValidation = () => {
 };
 
 enableValidation();
+
+//enableValidation(objeto)
+//const {formSelector, inputSelector, etc} = objeto; (destructuring, nesse caso naõ precisa usar objeto.propriedade)
+//Dentro da função: colocar objeto.formSelector, objeto.inputSelector...
+// Habilitando a validação chamando enableValidation()
+// Valide todas as configurações
+//coloca os valores das propriedades só na hora de chamar a função
+// enableValidation({
+//   formSelector: ".popup__form",
+//   inputSelector: ".popup__input",
+//   submitButtonSelector: ".popup__button",
+//   inactiveButtonClass: "popup__button_disabled",
+//   inputErrorClass: "popup__input_type_error",
+//   errorClass: "popup__error_visible",
+// });

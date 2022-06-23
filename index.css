@@ -14,7 +14,8 @@
 @import url("./blocks/popup/__container/popup__container.css");
 @import url("./blocks/popup/__title/popup__title.css");
 @import url("./blocks/popup/__input/popup__input.css");
-@import url("./blocks/popup/__save/popup__save.css");
+@import url("./blocks/popup/__button/popup__button.css");
+@import url("./blocks/popup/__button/_disabled/popup__button_disabled.css");
 @import url("./blocks/popup/__close/popup__close.css");
 @import url("./blocks/popup/_image/popup_image.css");
 @import url("./blocks/popup/__expanded-image/popup__expanded-image.css");
@@ -35,26 +36,16 @@
 @import url("./blocks/footer/footer.css");
 @import url("./blocks/footer/__text/footer__text.css");
 
-.form__input-error {
+.popup__error {
   display: none;
   color: red;
   font-size: 12px;
 }
 
-.form__input-error_active {
+.popup__error_visible {
   display: block;
 }
 
-.form__input_type_error {
+.popup__input_type_error {
   border-bottom-color: red;
-}
-
-.popup__button_disabled {
-  background-color: #ffffff;
-  color: #000000;
-  opacity: 0.2;
-  border: 1px solid #00000033;
-  border-radius: 2px;
-  pointer-events: none;
-  user-select: none;
 }
