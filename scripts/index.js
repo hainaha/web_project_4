@@ -81,6 +81,7 @@ initialCards.forEach((item) => {
 });
 
 function handleAddCardPopup() {
+  document.forms.addCardForm.reset();
   addCardPopup.classList.toggle("popup_opened");
   handleCloseEscapeListener(addCardPopup);
   closePopupOutsideClick(addCardPopup);
@@ -92,7 +93,7 @@ createCardButton.addEventListener("click", createNewCard);
 
 function closePopupOutsideClick(popupElement) {
   popupElement.addEventListener("click", function (evt) {
-    if (evt.target === this) {
+    if (!evt.target.closest(".popup__container")) {
       popupElement.classList.remove("popup_opened");
     }
   });
@@ -118,7 +119,6 @@ function createNewCard() {
   const card__image = document.querySelector("#card-image").value;
   const card__title = document.querySelector("#card-title").value;
   cardsContainer.prepend(addCard(card__image, card__title));
-  document.forms.addCardForm.reset();
   handleAddCardPopup();
 }
 

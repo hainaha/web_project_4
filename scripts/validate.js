@@ -61,6 +61,7 @@ const setEventListeners = (
 ) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
+  // Chamando a função toggleButtonState para que o botão fique inativo ao abrir o formulário em branco pela primeira vez
   toggleButtonState(inputList, buttonElement, inactiveButtonClass);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
