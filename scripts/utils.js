@@ -105,62 +105,10 @@ class ImagePopup extends Popup {
     this._closeButtonSelector = ".popup__close_image";
   }
 
-  // _handleExpandImagePopup(evt) {
-  //   const cardElement = evt.target.closest(".card");
-  //   const imagePopup = cardElement.querySelector(".popup_image");
-  //   imagePopup.classList.toggle("popup_opened");
-  // }
-
-  // _setEventListeners() {
-  //   document
-  //     .querySelector(this._openButtonSelector)
-  //     .addEventListener("click", this._handleExpandImagePopup);
-  // }
-
-  generatePopup(evt) {
-    const cardElement = evt.target.closest(".card");
+  generatePopup(cardElement) {
     this._element = cardElement.querySelector(this._popupSelector);
-    this._setEventListeners();
     this._setCloseEventListeners();
   }
-
-  // generatePopup(evt) {
-  //   this._popup = document.querySelector(this._popupSelector);
-  //   this._element = document.querySelector(this._popupSelector);
-  //   this._setEventListeners();
-  //   this._setCloseEventListeners();
-  // }
-
-  // _setEventListeners() {
-  //   document.querySelectorAll(this._openButtonSelector).forEach((item) => {
-  //     item.addEventListener("click", () => {
-  //       this.handlePopup();
-  //     });
-  //   });
-  // }
-
-  // generateImagePopup(data) {
-  //   // super.generatePopup();
-  //   // this._element.querySelector(".popup__expanded-image").src = card__image;
-  //   // console.log(this._element.querySelector(".popup__expanded-image").src);
-  //   // console.log(this._element.querySelector(".card__image").src);
-
-  //   this._element.querySelector(".popup__expanded-image").src = data.src;
-  //   this._element.querySelector(".popup__place-name").textContent = data.title;
-  // }
 }
 
 export { Popup, EditProfilePopup, AddCardPopup, ImagePopup };
-
-//editprofile
-// const openEditProfileButton = document.querySelector(".edit-button");
-
-// const editProfilePopup = document.querySelector("#edit-profile_popup");
-// const addCardPopup = document.querySelector("#add-card_popup");
-
-// const saveEditProfileButton = document.querySelector("#edit-profile_save");
-// const closeEditProfileButton = document.querySelector("#edit-profile_close");
-
-//addcard e editprofile - salvar, parecem iguais
-//popup selector: #edit-profile_popup e #add-card_popup
-//imagepopup só abrir e fechar + conteúdo, não tem seletor

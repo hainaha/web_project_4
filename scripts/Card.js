@@ -1,3 +1,4 @@
+import { ImagePopup } from "./utils.js";
 export default class Card {
   constructor(data, cardSelector) {
     this._text = data.title;
@@ -27,16 +28,31 @@ export default class Card {
     return this._element;
   }
 
+  _openImagePopup() {
+    this._element
+      .querySelector(".popup_image")
+      .classList.toggle("popup_opened");
+    const imagePopup = new ImagePopup(this._element);
+    imagePopup.generatePopup(this._element);
+  }
+
   _setEventListeners() {
     this._element
       .querySelector(".like-button")
       .addEventListener("click", () => {
         this._likeCard();
       });
+
     this._element
       .querySelector(".card__delete-icon")
       .addEventListener("click", () => {
         this._deleteCard();
+      });
+
+    this._element
+      .querySelector(".card__image")
+      .addEventListener("click", () => {
+        this._openImagePopup();
       });
   }
 

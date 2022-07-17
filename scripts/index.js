@@ -1,6 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { Popup, EditProfilePopup, AddCardPopup, ImagePopup } from "./utils.js";
+import { EditProfilePopup, AddCardPopup } from "./utils.js";
 
 const initialCards = [
   {
@@ -32,13 +32,10 @@ const initialCards = [
 const editProfilePopup = new EditProfilePopup();
 editProfilePopup.generatePopup();
 
-const imagePopup = new ImagePopup();
-
 initialCards.forEach((item) => {
   const card = new Card(item, "#cards__template");
   const cardElement = card.generateCard();
   document.querySelector(".content").append(cardElement);
-  imagePopup.generatePopup();
 });
 
 export function createNewCard() {
@@ -51,22 +48,10 @@ export function createNewCard() {
   const cardElement = card.generateCard();
   document.querySelector(".content").prepend(cardElement);
   addCardPopup.handlePopup();
-  imagePopup.generatePopup();
 }
 
 const addCardPopup = new AddCardPopup();
 addCardPopup.generatePopup();
-
-// const imagePopup = new ImagePopup();
-// imagePopup.generatePopup();
-
-// function handleExpandImagePopup(evt) {
-//   const cardElement = evt.target.closest(".card");
-//   const imagePopup = cardElement.querySelector(".popup_image");
-//   imagePopup.classList.toggle("popup_opened");
-//   handleCloseEscapeListener(imagePopup);
-//   closePopupOutsideClick(imagePopup);
-// }
 
 const configurationObject = {
   inputSelector: ".popup__input",
