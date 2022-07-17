@@ -1,5 +1,5 @@
 import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import { FormValidator } from "./FormValidator.js";
 import { EditProfilePopup, AddCardPopup } from "./utils.js";
 
 const initialCards = [
@@ -29,9 +29,6 @@ const initialCards = [
   },
 ];
 
-const editProfilePopup = new EditProfilePopup();
-editProfilePopup.generatePopup();
-
 initialCards.forEach((item) => {
   const card = new Card(item, "#cards__template");
   const cardElement = card.generateCard();
@@ -50,6 +47,9 @@ export function createNewCard() {
   addCardPopup.handlePopup();
 }
 
+const editProfilePopup = new EditProfilePopup();
+editProfilePopup.generatePopup();
+
 const addCardPopup = new AddCardPopup();
 addCardPopup.generatePopup();
 
@@ -65,9 +65,11 @@ const addCardFormValidator = new FormValidator(
   configurationObject,
   document.forms.addCardForm
 );
+
 const editProfileFormValidator = new FormValidator(
   configurationObject,
   document.forms.editProfileForm
 );
+
 addCardFormValidator.enableValidation();
 editProfileFormValidator.enableValidation();

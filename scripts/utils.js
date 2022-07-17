@@ -1,4 +1,5 @@
 import { createNewCard } from "./index.js";
+import { resetValidation } from "./FormValidator.js";
 
 class Popup {
   constructor(popupSelector, openButtonSelector, closeButtonSelector) {
@@ -64,6 +65,11 @@ class EditProfilePopup extends Popup {
     this.handlePopup();
   }
 
+  handlePopup() {
+    super.handlePopup();
+    resetValidation(this._element.querySelector(".popup__form"));
+  }
+
   _setEventListeners() {
     super._setEventListeners();
     this._element
@@ -85,6 +91,7 @@ class AddCardPopup extends Popup {
   handlePopup() {
     super.handlePopup();
     document.forms.addCardForm.reset();
+    resetValidation(this._element.querySelector(".popup__form"));
   }
 
   _setEventListeners() {
