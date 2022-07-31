@@ -72,12 +72,12 @@ export class FormValidator {
   }
 }
 
-// export const resetValidation = (formElement) => {
-//   const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
-//   inputList.forEach((inputElement) => {
-//     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//     inputElement.classList.remove("popup__input_type_error");
-//     errorElement.classList.remove("popup__error_visible");
-//     errorElement.textContent = "";
-//   });
-// };
+export const resetValidation = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
+  inputList.forEach((inputElement) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove("popup__input_type_error");
+    errorElement.classList.remove("popup__error_visible");
+    errorElement.textContent = "";
+  });
+};
