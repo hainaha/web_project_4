@@ -24,15 +24,20 @@
             <button class="edit-button" type="button"></button>
             <p class="header__subtitle">Explorer</p>
             <div class="popup" id="edit-profile_popup">
-              <form class="popup__form" name="editProfileForm" novalidate>
+              <form
+                class="popup__form"
+                id="editProfileForm"
+                name="editProfileForm"
+                novalidate
+              >
                 <div class="popup__container">
                   <p class="popup__title">Editar perfil</p>
                   <input
                     type="text"
+                    name="name"
                     placeholder="Nome"
                     class="popup__input"
                     id="input-name"
-                    value="Jacques Cousteau"
                     required
                     minlength="2"
                     maxlength="40"
@@ -40,10 +45,10 @@
                   <span class="popup__error input-name-error"></span>
                   <input
                     type="text"
+                    name="aboutme"
                     placeholder="Sobre mim"
                     class="popup__input"
                     id="input-aboutme"
-                    value="Explorer"
                     required
                     minlength="2"
                     maxlength="200"
@@ -67,7 +72,12 @@
           </div>
           <button class="add-button" type="button">&plus;</button>
           <div class="popup" id="add-card_popup">
-            <form class="popup__form" name="addCardForm" novalidate>
+            <form
+              class="popup__form"
+              id="addCardForm"
+              name="addCardForm"
+              novalidate
+            >
               <div class="popup__container">
                 <p class="popup__title">Novo local</p>
                 <input

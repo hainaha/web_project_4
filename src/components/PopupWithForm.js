@@ -2,9 +2,9 @@ import Popup from "./Popup.js";
 import { resetValidation } from "./FormValidator.js";
 
 export default class PopupWithForm extends Popup {
-  constructor({ popupSelector, handleFormSubmit }) {
+  constructor({ popupSelector, formSelector, handleFormSubmit }) {
     super(popupSelector);
-    this._formElement = document.forms.addCardForm;
+    this._formElement = document.querySelector(formSelector);
     this._handleFormSubmit = handleFormSubmit;
   }
 

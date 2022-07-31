@@ -6,14 +6,35 @@ import {
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { EditProfilePopup, AddCardPopup } from "../components/utils.js";
 import Section from "../components/Section";
-import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithForm from "../components/PopupWithForm";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
-//const editProfilePopup = new EditProfilePopup();
-//editProfilePopup.generatePopup();
+const editProfilePopup = new PopupWithForm({
+  popupSelector: "#edit-profile_popup",
+  formSelector: "#editProfileForm",
+  handleFormSubmit: (item) => {
+    const userInfo = new UserInfo({
+      nameSelector: ".header__title",
+      aboutmeSelector: ".header__subtitle",
+    });
+    userInfo.setUserInfo(item);
+  },
+});
+
+editProfilePopup.setEventListeners();
+const editProfileButton = document.querySelector(".edit-button");
+editProfileButton.addEventListener("click", () => {
+  editProfilePopup.open();
+  const userInfo = new UserInfo({
+    nameSelector: ".header__title",
+    aboutmeSelector: ".header__subtitle",
+  });
+  const userData = userInfo.getUserInfo();
+  document.querySelector("#input-name").value = userData.name;
+  document.querySelector("#input-aboutme").value = userData.aboutme;
+});
 
 const cardList = new Section(
   {
@@ -27,18 +48,19 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
-const popupWithForm = new PopupWithForm({
+const addCardPopup = new PopupWithForm({
   popupSelector: "#add-card_popup",
+  formSelector: "#addCardForm",
   handleFormSubmit: (cardItem) => {
     const cardElement = createCard(cardItem);
-    document.querySelector(".content").prepend(cardElement);
+    document.querySelector(containerSelector).prepend(cardElement);
   },
 });
 
-popupWithForm.setEventListeners();
+addCardPopup.setEventListeners();
 const addButton = document.querySelector(".add-button");
 addButton.addEventListener("click", () => {
-  popupWithForm.open();
+  addCardPopup.open();
 });
 
 const addCardFormValidator = new FormValidator(

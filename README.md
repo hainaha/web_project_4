@@ -9,11 +9,11 @@
 
 **Introdução**
 
-Este projeto mostra cards de locais pelos Estados Unidos visitados pelo Explorador Jacques Cousteau. O projeto foi construído durante o curso de Desenvolvedor Web da Practicum como atividade prática para lidar com comandos de Javascript para manipulação do DOM com foco na manipulação de arrays e NodeLists, além de comandos para implementar a validação de formulários.
+Este projeto mostra cards de locais pelos Estados Unidos visitados pelo Explorador Jacques Cousteau. O projeto foi construído durante o curso de Desenvolvedor Web da Practicum como atividade prática para lidar com comandos de Javascript para manipulação do DOM, validação de formulários, implementação de classes com acoplamento fraco e construção de projetos com Webpack.
 
 **Tecnologias utilizadas**
 
-Para construção deste projeto foram usados HTML, CSS semântico, metodologia BEM para nomenclatura e estrutura de arquivos e Javascript.
+Para construção deste projeto foram usados HTML, CSS semântico, metodologia BEM para nomenclatura e estrutura de arquivos, Javascript e Webpack.
 
 **Links para o projeto no Figma**
 
