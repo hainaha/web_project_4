@@ -16,7 +16,7 @@ export const initialCards = [
     src: "https://code.s3.yandex.net/web-code/latemar.jpg",
   },
   {
-    title: "Parque Nacional da Vanoise ",
+    title: "Parque Nacional da Vanoise",
     src: "https://code.s3.yandex.net/web-code/vanoise.jpg",
   },
   {
