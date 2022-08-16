@@ -40,7 +40,7 @@ const editAvatarPopup = new PopupWithForm({
 });
 
 editAvatarPopup.setEventListeners();
-const editAvatarButton = document.querySelector(".edit-button__avatar");
+const editAvatarButton = document.querySelector(".avatar-button");
 editAvatarButton.addEventListener("click", () => {
   editAvatarPopup.open();
 });
@@ -56,7 +56,7 @@ const editProfilePopup = new PopupWithForm({
 });
 
 editProfilePopup.setEventListeners();
-const editProfileButton = document.querySelector(".edit-button__profile");
+const editProfileButton = document.querySelector(".edit-button");
 editProfileButton.addEventListener("click", () => {
   editProfilePopup.open();
   const userInfo = newUserInfo();
