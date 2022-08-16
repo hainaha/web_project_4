@@ -1,0 +1,21 @@
+.header__avatar-container {
+  position: relative;
+  margin: 42px 0 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
+}
+
+/* .header__avatar-container:hover,
+.header__avatar-container:focus {
+  background-image: url(../../../images/edit_avatar.png);
+  background-size: contain;
+  cursor: pointer;
+} */
+
+@media screen and (min-width: 600px) {
+  .header__avatar-container {
+    margin: 0 30px 0 0;
+  }
+}

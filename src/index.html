@@ -14,14 +14,46 @@
           alt="logo da Around The U.S."
         />
         <div class="header__profile">
-          <img
-            src="<%=require('./images/avatar.png')%>"
-            class="header__avatar"
-            alt="Foto do perfil"
-          />
+          <div class="header__avatar-container">
+            <img src=" " class="header__avatar" alt="Foto do perfil" />
+            <button class="edit-button_avatar" type="button"></button>
+            <div class="popup" id="edit-avatar_popup">
+              <form
+                class="popup__form"
+                id="editAvatarForm"
+                name="editAvatarForm"
+                novalidate
+              >
+                <div class="popup__container">
+                  <p class="popup__title">Alterar a foto do perfil</p>
+                  <input
+                    type="url"
+                    name="avatar"
+                    placeholder="Link da imagem"
+                    class="popup__input"
+                    id="avatar-image"
+                    required
+                  />
+                  <span class="popup__error avatar-image-error"></span>
+                  <button
+                    id="edit-avatar_save"
+                    class="popup__button"
+                    type="submit"
+                  >
+                    Salvar
+                  </button>
+                  <button
+                    id="edit-avatar_close"
+                    class="popup__close"
+                    type="button"
+                  ></button>
+                </div>
+              </form>
+            </div>
+          </div>
           <div class="header__title-container">
             <h1 class="header__title"></h1>
-            <button class="edit-button" type="button"></button>
+            <button class="edit-button_profile" type="button"></button>
             <p class="header__subtitle"></p>
             <div class="popup" id="edit-profile_popup">
               <form
@@ -82,8 +114,8 @@
                 <p class="popup__title">Novo local</p>
                 <input
                   type="text"
-                  name="title"
-                  placeholder="Titulo"
+                  name="name"
+                  placeholder="Título"
                   class="popup__input"
                   id="card-title"
                   required
@@ -93,14 +125,18 @@
                 <span class="popup__error card-title-error"></span>
                 <input
                   type="url"
-                  name="src"
+                  name="link"
                   placeholder="Link da imagem"
                   class="popup__input"
                   id="card-image"
                   required
                 />
                 <span class="popup__error card-image-error"></span>
-                <button id="create-card" class="popup__button" type="submit">
+                <button
+                  id="create-card"
+                  class="popup__button popup__button_disabled"
+                  type="submit"
+                >
                   Salvar
                 </button>
                 <button
@@ -110,6 +146,19 @@
                 ></button>
               </div>
             </form>
+          </div>
+          <div class="popup" id="delete-card_popup">
+            <div class="popup__container">
+              <p class="popup__title">Tem certeza?</p>
+              <button id="delete-card" class="popup__button" type="submit">
+                Sim
+              </button>
+              <button
+                id="add-card_close"
+                class="popup__close"
+                type="button"
+              ></button>
+            </div>
           </div>
         </div>
       </header>
@@ -124,7 +173,11 @@
         <img src=" " class="card__image" alt="" />
         <div class="card__title-container">
           <h2 class="card__title"></h2>
-          <button class="like-button" type="button"></button>
+          <div class="card__like-container">
+            <button class="like-button" type="button"></button>
+            <p class="card__likes"></p>
+            <p class="card__id"></p>
+          </div>
         </div>
         <div class="popup popup_image">
           <div class="popup__container popup__container_image">

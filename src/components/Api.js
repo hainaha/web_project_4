@@ -1,4 +1,3 @@
-import UserInfo from "./UserInfo";
 export default class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -20,13 +19,22 @@ export default class Api {
       });
   }
 
-  addCard(title, src) {
-    fetch(`${this._baseUrl}/cards`, {
+  _loadingData(isLoading, buttonSelector) {
+    if (isLoading) {
+      document.querySelector(buttonSelector).textContent = "Salvando...";
+    } else {
+      document.querySelector(buttonSelector).textContent = "Salvar";
+    }
+  }
+
+  addCard(data) {
+    this._loadingData(true, "#create-card");
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: title,
-        link: src,
+        name: data.name,
+        link: data.link,
       }),
     })
       .then((res) => {
@@ -37,7 +45,8 @@ export default class Api {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(this._loadingData(false, "#create-card"));
   }
 
   deleteCard(cardId) {
@@ -57,7 +66,7 @@ export default class Api {
   }
 
   likeCard(cardId) {
-    fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: "PUT",
       headers: this._headers,
     })
@@ -73,7 +82,7 @@ export default class Api {
   }
 
   unlikeCard(cardId) {
-    fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     })
@@ -104,6 +113,7 @@ export default class Api {
   }
 
   saveUserData({ name, about }) {
+    this._loadingData(true, "#edit-profile_save");
     fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -120,10 +130,12 @@ export default class Api {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(this._loadingData(false, "#edit-profile_save"));
   }
 
   updateUserImage(imageLink) {
+    this._loadingData(true, "#edit-avatar_save");
     fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
@@ -139,6 +151,7 @@ export default class Api {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(this._loadingData(false, "#edit-avatar_save"));
   }
 }
