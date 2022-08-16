@@ -1,4 +1,4 @@
-.edit-button_avatar {
+.edit-button__avatar {
   width: 100%;
   height: 100%;
   border: none;
@@ -9,8 +9,8 @@
   background-color: transparent;
 }
 
-.edit-button_avatar:hover,
-.edit-button_avatar:focus {
+.edit-button__avatar:hover,
+.edit-button__avatar:focus {
   background-image: url(../../../images/edit_avatar.png);
   background-color: #000000cc;
   background-size: auto;
