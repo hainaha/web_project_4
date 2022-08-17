@@ -27,6 +27,7 @@ function newUserInfo() {
 api.getUserData().then((data) => {
   const userInfo = newUserInfo();
   userInfo.setUserInfo(data);
+  document.querySelector(".header__id").textContent = data._id;
   document.querySelector(".header__avatar").src = data.avatar;
 });
 
@@ -135,6 +136,7 @@ function createCard(cardItem) {
           api.deleteCard(cardElement.querySelector(".card__id").textContent);
         });
       },
+      myId: document.querySelector(".header__id").textContent,
     },
     api
   );

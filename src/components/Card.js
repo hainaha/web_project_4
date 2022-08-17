@@ -1,15 +1,19 @@
 export default class Card {
-  constructor({ data, cardSelector, handleCardClick, deleteCardClick }, api) {
+  constructor(
+    { data, cardSelector, handleCardClick, deleteCardClick, myId },
+    api
+  ) {
     this._text = data.name;
     this._image = data.link;
     this._likes = data.likes;
     this._likesNumber = data.likes.length;
     this._id = data._id;
-    this._owner = data.owner;
+    this._ownerId = data.owner._id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._deleteCardClick = deleteCardClick;
     this._api = api;
+    this._myId = myId;
   }
 
   _getTemplate() {
@@ -22,32 +26,23 @@ export default class Card {
   }
 
   _isLiked() {
-    let isliked = this._api.getUserData().then((me) => {
-      this._likes.some(function (user) {
-        if (JSON.stringify(user._id) === JSON.stringify(me._id)) {
-          isliked = true;
-          return isliked;
-        }
-      });
-      if (isliked === true) {
-        this._element
-          .querySelector(".like-button")
-          .classList.add("like-button_active");
-        this._element
-          .querySelector(".card__likes")
-          .classList.add("card__likes_active");
-      }
-    });
+    const likesArray = JSON.stringify(this._likes);
+    if (likesArray.includes(this._myId)) {
+      this._element
+        .querySelector(".like-button")
+        .classList.add("like-button_active");
+      this._element
+        .querySelector(".card__likes")
+        .classList.add("card__likes_active");
+    }
   }
 
   _isNotMine() {
-    this._api.getUserData().then((me) => {
-      if (JSON.stringify(this._owner) !== JSON.stringify(me)) {
-        this._element
-          .querySelector(".card__delete-icon")
-          .classList.add("card__delete-icon_hidden");
-      }
-    });
+    if (this._myId !== this._ownerId) {
+      this._element
+        .querySelector(".card__delete-icon")
+        .classList.add("card__delete-icon_hidden");
+    }
   }
 
   generateCard() {
