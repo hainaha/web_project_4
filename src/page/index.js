@@ -51,7 +51,7 @@ const editProfilePopup = new PopupWithForm({
   handleFormSubmit: (item) => {
     const userInfo = newUserInfo();
     userInfo.setUserInfo(item);
-    api.saveUserData(item);
+    api.updateUserData(item);
   },
 });
 

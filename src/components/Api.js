@@ -112,7 +112,7 @@ export default class Api {
       });
   }
 
-  saveUserData({ name, about }) {
+  updateUserData({ name, about }) {
     this._loadingData(true, "#edit-profile_save");
     fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",

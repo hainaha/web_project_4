@@ -86,27 +86,34 @@ export default class Card {
   }
 
   _likeCard() {
+    if (
+      !this._element
+        .querySelector(".like-button")
+        .classList.contains("like-button_active")
+    ) {
+      this._api.likeCard(this._id).then((res) => {
+        this._updateLikeCounter(res);
+        this._activateLike();
+      });
+    } else {
+      this._api.unlikeCard(this._id).then((res) => {
+        this._updateLikeCounter(res);
+        this._activateLike();
+      });
+    }
+  }
+
+  _updateLikeCounter(res) {
+    this._element.querySelector(".card__likes").textContent = res.likes.length;
+  }
+
+  _activateLike() {
     this._element
       .querySelector(".like-button")
       .classList.toggle("like-button_active");
     this._element
       .querySelector(".card__likes")
       .classList.toggle("card__likes_active");
-    if (
-      this._element
-        .querySelector(".like-button")
-        .classList.contains("like-button_active")
-    ) {
-      this._api.likeCard(this._id).then((res) => {
-        this._element.querySelector(".card__likes").textContent =
-          res.likes.length;
-      });
-    } else {
-      this._api.unlikeCard(this._id).then((res) => {
-        this._element.querySelector(".card__likes").textContent =
-          res.likes.length;
-      });
-    }
   }
 
   deleteCard() {
