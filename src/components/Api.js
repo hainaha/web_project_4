@@ -136,7 +136,7 @@ export default class Api {
 
   updateUserImage(imageLink) {
     this._loadingData(true, "#edit-avatar_save");
-    fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
