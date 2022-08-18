@@ -38,7 +38,6 @@ const editAvatarPopup = new PopupWithForm({
     api.updateUserImage(item.avatar).then((res) => {
       document.querySelector(".header__avatar").src = res.avatar;
     });
-    // document.querySelector(".header__avatar").src = item.avatar;
   },
 });
 
