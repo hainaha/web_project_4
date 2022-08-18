@@ -39,6 +39,20 @@ const editAvatarPopup = new PopupWithForm({
       document.querySelector(".header__avatar").src = res.avatar;
     });
   },
+  resetValidation: (formElement) => {
+    const buttonElement = formElement.querySelector("#edit-avatar_save");
+    const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
+    inputList.forEach((inputElement) => {
+      const errorElement = formElement.querySelector(
+        `.${inputElement.id}-error`
+      );
+      inputElement.classList.remove("popup__input_type_error");
+      errorElement.classList.remove("popup__error_visible");
+      errorElement.textContent = "";
+      buttonElement.disabled = true;
+      buttonElement.classList.add("popup__button_disabled");
+    });
+  },
 });
 
 editAvatarPopup.setEventListeners();
@@ -54,6 +68,20 @@ const editProfilePopup = new PopupWithForm({
     const userInfo = newUserInfo();
     userInfo.setUserInfo(item);
     api.updateUserData(item);
+  },
+  resetValidation: (formElement) => {
+    const buttonElement = formElement.querySelector("#edit-profile_save");
+    const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
+    inputList.forEach((inputElement) => {
+      const errorElement = formElement.querySelector(
+        `.${inputElement.id}-error`
+      );
+      inputElement.classList.remove("popup__input_type_error");
+      errorElement.classList.remove("popup__error_visible");
+      errorElement.textContent = "";
+      buttonElement.disabled = true;
+      buttonElement.classList.add("popup__button_disabled");
+    });
   },
 });
 
@@ -88,6 +116,20 @@ const addCardPopup = new PopupWithForm({
     api.addCard(cardItem).then((res) => {
       const cardElement = createCard(res);
       document.querySelector(containerSelector).prepend(cardElement);
+    });
+  },
+  resetValidation: (formElement) => {
+    const buttonElement = formElement.querySelector("#create-card");
+    const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
+    inputList.forEach((inputElement) => {
+      const errorElement = formElement.querySelector(
+        `.${inputElement.id}-error`
+      );
+      inputElement.classList.remove("popup__input_type_error");
+      errorElement.classList.remove("popup__error_visible");
+      errorElement.textContent = "";
+      buttonElement.disabled = true;
+      buttonElement.classList.add("popup__button_disabled");
     });
   },
 });
