@@ -17,15 +17,12 @@ const api = new Api({
   },
 });
 
-function newUserInfo() {
-  return new UserInfo({
-    nameSelector: ".header__title",
-    aboutSelector: ".header__subtitle",
-  });
-}
+const userInfo = new UserInfo({
+  nameSelector: ".header__title",
+  aboutSelector: ".header__subtitle",
+});
 
 api.getUserData().then((data) => {
-  const userInfo = newUserInfo();
   userInfo.setUserInfo(data);
   document.querySelector(".header__id").textContent = data._id;
   document.querySelector(".header__avatar").src = data.avatar;
@@ -65,7 +62,6 @@ const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-profile_popup",
   formSelector: "#editProfileForm",
   handleFormSubmit: (item) => {
-    const userInfo = newUserInfo();
     userInfo.setUserInfo(item);
     api.updateUserData(item);
   },
@@ -89,7 +85,6 @@ editProfilePopup.setEventListeners();
 const editProfileButton = document.querySelector(".edit-button");
 editProfileButton.addEventListener("click", () => {
   editProfilePopup.open();
-  const userInfo = newUserInfo();
   const userData = userInfo.getUserInfo();
   document.querySelector("#input-name").value = userData.name;
   document.querySelector("#input-about").value = userData.about;
@@ -114,8 +109,19 @@ const addCardPopup = new PopupWithForm({
   formSelector: "#addCardForm",
   handleFormSubmit: (cardItem) => {
     api.addCard(cardItem).then((res) => {
-      const cardElement = createCard(res);
-      document.querySelector(containerSelector).prepend(cardElement);
+      let cardData = [];
+      cardData.push(res);
+      const newCard = new Section(
+        {
+          items: cardData,
+          renderer: (cardItem) => {
+            const cardElement = createCard(cardItem);
+            newCard.prependItem(cardElement);
+          },
+        },
+        containerSelector
+      );
+      newCard.renderItems();
     });
   },
   resetValidation: (formElement) => {
@@ -133,6 +139,31 @@ const addCardPopup = new PopupWithForm({
     });
   },
 });
+
+// const addCardPopup = new PopupWithForm({
+//   popupSelector: "#add-card_popup",
+//   formSelector: "#addCardForm",
+//   handleFormSubmit: (cardItem) => {
+//     api.addCard(cardItem).then((res) => {
+//       const cardElement = createCard(res);
+//       document.querySelector(containerSelector).prepend(cardElement);
+//     });
+//   },
+//   resetValidation: (formElement) => {
+//     const buttonElement = formElement.querySelector("#create-card");
+//     const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
+//     inputList.forEach((inputElement) => {
+//       const errorElement = formElement.querySelector(
+//         `.${inputElement.id}-error`
+//       );
+//       inputElement.classList.remove("popup__input_type_error");
+//       errorElement.classList.remove("popup__error_visible");
+//       errorElement.textContent = "";
+//       buttonElement.disabled = true;
+//       buttonElement.classList.add("popup__button_disabled");
+//     });
+//   },
+// });
 
 addCardPopup.setEventListeners();
 const addButton = document.querySelector(".add-button");
