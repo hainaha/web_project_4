@@ -111,7 +111,7 @@ export default class Card {
       .classList.toggle("card__likes_active");
   }
 
-  deleteCard() {
+  removeCard() {
     this._element.remove();
   }
 }

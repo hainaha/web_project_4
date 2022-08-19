@@ -107,20 +107,6 @@ editProfileButton.addEventListener("click", () => {
   document.querySelector("#input-about").value = userData.about;
 });
 
-// api.getInitialCards().then((initialCards) => {
-//   const cardList = new Section(
-//     {
-//       items: initialCards,
-//       renderer: (cardItem) => {
-//         const cardElement = createCard(cardItem);
-//         cardList.addItem(cardElement);
-//       },
-//     },
-//     containerSelector
-//   );
-//   cardList.renderItems();
-// });
-
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-card_popup",
   formSelector: "#addCardForm",
@@ -156,31 +142,6 @@ const addCardPopup = new PopupWithForm({
     });
   },
 });
-
-// const addCardPopup = new PopupWithForm({
-//   popupSelector: "#add-card_popup",
-//   formSelector: "#addCardForm",
-//   handleFormSubmit: (cardItem) => {
-//     api.addCard(cardItem).then((res) => {
-//       const cardElement = createCard(res);
-//       document.querySelector(containerSelector).prepend(cardElement);
-//     });
-//   },
-//   resetValidation: (formElement) => {
-//     const buttonElement = formElement.querySelector("#create-card");
-//     const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
-//     inputList.forEach((inputElement) => {
-//       const errorElement = formElement.querySelector(
-//         `.${inputElement.id}-error`
-//       );
-//       inputElement.classList.remove("popup__input_type_error");
-//       errorElement.classList.remove("popup__error_visible");
-//       errorElement.textContent = "";
-//       buttonElement.disabled = true;
-//       buttonElement.classList.add("popup__button_disabled");
-//     });
-//   },
-// });
 
 addCardPopup.setEventListeners();
 const addButton = document.querySelector(".add-button");
@@ -221,10 +182,12 @@ function createCard(cardItem) {
         const deleteCardPopup = new Popup("#delete-card_popup");
         deleteCardPopup.setEventListeners();
         deleteCardPopup.open();
-        document.querySelector("#delete-card").addEventListener("click", () => {
-          card.deleteCard();
-          deleteCardPopup.close();
+        const confirmButton = document.querySelector("#delete-card");
+        confirmButton.addEventListener("click", () => {
           api.deleteCard(cardElement.querySelector(".card__id").textContent);
+          confirmButton.replaceWith(confirmButton.cloneNode(true));
+          card.removeCard();
+          deleteCardPopup.close();
         });
       },
       myId: document.querySelector(".header__id").textContent,
