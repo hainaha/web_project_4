@@ -20,13 +20,30 @@ const api = new Api({
 const userInfo = new UserInfo({
   nameSelector: ".header__title",
   aboutSelector: ".header__subtitle",
+  avatarSelector: ".header__avatar",
+  idSelector: ".header__id",
 });
 
-api.getUserData().then((data) => {
-  userInfo.setUserInfo(data);
-  document.querySelector(".header__id").textContent = data._id;
-  document.querySelector(".header__avatar").src = data.avatar;
-});
+api
+  .getUserData()
+  .then((data) => {
+    userInfo.setUserInfo(data);
+  })
+  .then(() => {
+    api.getInitialCards().then((initialCards) => {
+      const cardList = new Section(
+        {
+          items: initialCards,
+          renderer: (cardItem) => {
+            const cardElement = createCard(cardItem);
+            cardList.addItem(cardElement);
+          },
+        },
+        containerSelector
+      );
+      cardList.renderItems();
+    });
+  });
 
 const editAvatarPopup = new PopupWithForm({
   popupSelector: "#edit-avatar_popup",
@@ -62,7 +79,7 @@ const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-profile_popup",
   formSelector: "#editProfileForm",
   handleFormSubmit: (item) => {
-    userInfo.setUserInfo(item);
+    userInfo.updateUserInfo(item);
     api.updateUserData(item);
   },
   resetValidation: (formElement) => {
@@ -90,19 +107,19 @@ editProfileButton.addEventListener("click", () => {
   document.querySelector("#input-about").value = userData.about;
 });
 
-api.getInitialCards().then((initialCards) => {
-  const cardList = new Section(
-    {
-      items: initialCards,
-      renderer: (cardItem) => {
-        const cardElement = createCard(cardItem);
-        cardList.addItem(cardElement);
-      },
-    },
-    containerSelector
-  );
-  cardList.renderItems();
-});
+// api.getInitialCards().then((initialCards) => {
+//   const cardList = new Section(
+//     {
+//       items: initialCards,
+//       renderer: (cardItem) => {
+//         const cardElement = createCard(cardItem);
+//         cardList.addItem(cardElement);
+//       },
+//     },
+//     containerSelector
+//   );
+//   cardList.renderItems();
+// });
 
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-card_popup",
